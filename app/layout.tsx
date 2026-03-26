@@ -6,19 +6,19 @@ import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "chronark.com",
-    template: "%s | chronark.com",
+    default: "On Math and Pedagogy",
+    template: "%s | On Math and Pedagogy",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Placeholder description",
   openGraph: {
-    title: "chronark.com",
+    title: "On Math and Pedagogy",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
-    siteName: "chronark.com",
+      "Placeholder",
+    url: "https://placeholder.com",
+    siteName: "placeholder.com",
     images: [
       {
-        url: "https://chronark.com/og.png",
+        url: "https://placeholder.com/placeholder.png",
         width: 1920,
         height: 1080,
       },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Chronark",
+    title: "On Math and Pedagogy",
     card: "summary_large_image",
   },
   icons: {

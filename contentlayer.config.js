@@ -8,7 +8,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 const computedFields = {
 	path: {
 		type: "string",
-		resolve: (doc) => `/${doc._raw.flattenedPath}`,
+		resolve: (doc) => `/explore/${doc._raw.flattenedPath.split("/").slice(1).join("/")}`,
 	},
 	slug: {
 		type: "string",
@@ -29,12 +29,9 @@ export const Project = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
-		description: {
-			type: "string",
+order: {
+			type: "number",
 			required: true,
-		},
-		date: {
-			type: "date",
 		},
 		url: {
 			type: "string",
