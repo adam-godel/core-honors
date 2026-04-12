@@ -1,8 +1,10 @@
 // @ts-nocheck
+"use client";
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import { Ref } from "@/app/components/ref";
 
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
@@ -65,7 +67,7 @@ const components = {
 	a: ({ className, ...props }) => (
 		<Link
 			className={clsx(
-				"font-medium text-zinc-900 underline underline-offset-4",
+				"font-medium text-white underline underline-offset-4",
 				className,
 			)}
 			{...props}
@@ -161,6 +163,7 @@ const components = {
 		/>
 	),
 	Image,
+	Ref,
 };
 
 interface MdxProps {

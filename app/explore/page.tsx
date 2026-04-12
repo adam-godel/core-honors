@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -18,7 +19,7 @@ export default function ProjectsPage() {
             Explore
           </h2>
           <p className="mt-4 text-zinc-400">
-            Placeholder essays description.
+            I recommend you start with <Link href="/explore/welcome" className="text-zinc-300 underline underline-offset-4">Welcome</Link>, then <Link href="/explore/proposal" className="text-zinc-300 underline underline-offset-4">Project Proposal</Link>, then the rest in any order, but finish with <Link href="/explore/tidal-wave" className="text-zinc-300 underline underline-offset-4">Tidal Wave</Link>.
           </p>
         </div>
         <div className="w-full h-px bg-zinc-800" />
