@@ -22,8 +22,6 @@ export default function ProjectsPage() {
             I recommend you start with <Link href="/explore/welcome" className="text-zinc-300 underline underline-offset-4">Welcome</Link>, then <Link href="/explore/proposal" className="text-zinc-300 underline underline-offset-4">Project Proposal</Link>, then the rest in any order, but finish with <Link href="/explore/tidal-wave" className="text-zinc-300 underline underline-offset-4">Tidal Wave</Link>.
           </p>
         </div>
-        <div className="w-full h-px bg-zinc-800" />
-
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
           <div className="grid grid-cols-1 gap-4">
             {sorted

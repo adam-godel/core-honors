@@ -329,7 +329,7 @@ export default function PostPage({ params }: Props) {
   const isDocPage = slug === "ai-in-writing";
 
   return (
-    <div className="bg-gradient-to-tl from-black via-zinc-900 to-black min-h-screen">
+    <div className="min-h-screen">
       <Header project={project} />
 
       {isDocPage ? (

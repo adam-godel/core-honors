@@ -39,7 +39,7 @@ export function Ref({ children, code, title, code2, title2 }: RefProps) {
 				}}
 			>
 				<span
-					className="block bg-zinc-800 text-white rounded-xl px-4 py-2.5 shadow-xl text-center"
+					className="block bg-zinc-600 text-white rounded-xl px-4 py-2.5 shadow-xl text-center"
 					style={{ width: "210px" }}
 				>
 					<span className="block text-base font-bold tracking-wide leading-tight">
@@ -50,7 +50,7 @@ export function Ref({ children, code, title, code2, title2 }: RefProps) {
 					</span>
 					{code2 && title2 && (
 						<>
-							<span className="block my-2 border-t border-zinc-600" />
+							<span className="block my-2 border-t border-zinc-400" />
 							<span className="block text-base font-bold tracking-wide leading-tight">
 								{code2}
 							</span>
@@ -67,7 +67,7 @@ export function Ref({ children, code, title, code2, title2 }: RefProps) {
 						height: 0,
 						borderLeft: "7px solid transparent",
 						borderRight: "7px solid transparent",
-						borderTop: "7px solid #27272a",
+						borderTop: "7px solid #52525b",
 					}}
 				/>
 			</span>
