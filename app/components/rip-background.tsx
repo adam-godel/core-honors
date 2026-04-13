@@ -24,11 +24,6 @@ export function RipBackground() {
 		const ctx = canvas.getContext("2d");
 		if (!ctx) return;
 
-		// Offscreen canvas for the gray overlay so we can composite it
-		const overlay = document.createElement("canvas");
-		const ovCtx = overlay.getContext("2d");
-		if (!ovCtx) return;
-
 		// ── State ────────────────────────────────────────────────────────────────
 		let w = 0, h = 0, dpr = 1;
 		let mx = -9999, my = -9999;   // mouse (viewport coords)
@@ -44,32 +39,11 @@ export function RipBackground() {
 			dpr = window.devicePixelRatio || 1;
 			w = window.innerWidth;
 			h = window.innerHeight;
-			for (const c of [canvas, overlay]) {
-				c.width = w * dpr;
-				c.height = h * dpr;
-				c.style.width = `${w}px`;
-				c.style.height = `${h}px`;
-			}
+			canvas.width = w * dpr;
+			canvas.height = h * dpr;
+			canvas.style.width = `${w}px`;
+			canvas.style.height = `${h}px`;
 			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-			ovCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-		}
-
-		// ── Gradients ────────────────────────────────────────────────────────────
-		function darkGrad(c: CanvasRenderingContext2D) {
-			const g = c.createLinearGradient(w, h, 0, 0); // bottom-right → top-left
-			g.addColorStop(0, "#18181b"); // zinc-900
-			g.addColorStop(0.5, "#18181b");
-			g.addColorStop(1, "#18181b");
-			return g;
-		}
-
-		function rainbowGrad(c: CanvasRenderingContext2D) {
-			const shift = (t * 22) % 360;
-			const g = c.createLinearGradient(0, h, w, 0); // diagonal sweep
-			for (let i = 0; i <= 6; i++) {
-				g.addColorStop(i / 6, `hsl(${(shift + i * 60) % 360},95%,58%)`);
-			}
-			return g;
 		}
 
 		// ── Organic shape variation ───────────────────────────────────────────────
@@ -176,8 +150,8 @@ export function RipBackground() {
 				const alpha = (1 - p.life / p.maxLife) * 0.9;
 				const r = p.size * 3;
 				const grd = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-				grd.addColorStop(0, `hsla(${p.hue},100%,78%,${alpha})`);
-				grd.addColorStop(1, `hsla(${p.hue},100%,55%,0)`);
+				grd.addColorStop(0, `oklch(78% 0.22 ${p.hue}deg / ${alpha})`);
+				grd.addColorStop(1, `oklch(55% 0.22 ${p.hue}deg / 0)`);
 				c.beginPath();
 				c.arc(p.x, p.y, r, 0, Math.PI * 2);
 				c.fillStyle = grd;
@@ -217,26 +191,25 @@ export function RipBackground() {
 			// ── Render ───────────────────────────────────────────────────────────
 			ctx.clearRect(0, 0, w, h);
 
-			// 1. Rainbow base (full canvas)
-			ctx.fillStyle = rainbowGrad(ctx);
+			// 1. Dark base (full canvas)
+			ctx.fillStyle = "#18181b";
 			ctx.fillRect(0, 0, w, h);
 
-			// 2. Gray overlay with rip hole, built on offscreen canvas
-			ovCtx.setTransform(1, 0, 0, 1, 0, 0);
-			ovCtx.clearRect(0, 0, overlay.width, overlay.height);
-			ovCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-			ovCtx.globalCompositeOperation = "source-over";
-			ovCtx.fillStyle = darkGrad(ovCtx);
-			ovCtx.fillRect(0, 0, w, h);
-
+			// 2. Rainbow fill clipped to rip shape — gradient centered on cursor
+			//    so brightness is identical regardless of screen position
 			if (mouseOnScreen) {
-				ovCtx.globalCompositeOperation = "destination-out";
-				buildRip(ovCtx, cx, cy, len, wid, ang);
-				ovCtx.fill();
+				const shift = (t * 22) % 360;
+				const g = ctx.createLinearGradient(cx - len, cy, cx + len, cy);
+				for (let i = 0; i <= 6; i++) {
+					g.addColorStop(i / 6, `oklch(72% 0.22 ${(shift + i * 60) % 360}deg)`);
+				}
+				ctx.save();
+				buildRip(ctx, cx, cy, len, wid, ang);
+				ctx.clip();
+				ctx.fillStyle = g;
+				ctx.fillRect(0, 0, w, h);
+				ctx.restore();
 			}
-
-			ctx.drawImage(overlay, 0, 0, w, h);
 
 			// 3. Glowing rip-edge outline
 			if (mouseOnScreen) {
