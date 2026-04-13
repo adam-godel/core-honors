@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 type Particle = {
 	x: number; y: number;
@@ -17,6 +18,8 @@ const BASE_WID = 17;
 export function RipBackground() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const rafRef = useRef<number>(0);
+	const pathname = usePathname();
+	const isHome = pathname === "/";
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -257,6 +260,7 @@ export function RipBackground() {
 		<canvas
 			ref={canvasRef}
 			aria-hidden="true"
+			className={isHome ? "animate-fade-in" : undefined}
 			style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0 }}
 		/>
 	);

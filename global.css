@@ -6,5 +6,35 @@
   .text-edge-outline {
     -webkit-text-stroke: 1px rgba(255,255,255,0.3);
   }
-} 
+}
+
+/* Glitch jitter for "Math" → Greek word: chromatic aberration via drop-shadow */
+@keyframes glitch-math {
+  0%   { transform: translateX(0px)   skewX(0deg); }
+  12%  { transform: translateX(-4px)  skewX(-2.5deg);
+         filter: drop-shadow(-3px 0 rgba(255,0,60,0.75)) drop-shadow(3px 0 rgba(0,80,255,0.75)); }
+  25%  { transform: translateX(5px)   skewX(1.5deg);
+         filter: drop-shadow(2px 0 rgba(255,0,60,0.5)) drop-shadow(-2px 0 rgba(0,80,255,0.5)); }
+  37%  { transform: translateX(-3px)  skewX(-1deg);   filter: none; }
+  50%  { transform: translateX(4px)   skewX(1deg);
+         filter: drop-shadow(-2px 0 rgba(255,0,60,0.6)) drop-shadow(2px 0 rgba(0,80,255,0.6)); }
+  62%  { transform: translateX(-2px)  skewX(0.5deg);  filter: none; }
+  75%  { transform: translateX(3px);
+         filter: drop-shadow(-1px 0 rgba(255,0,60,0.4)) drop-shadow(1px 0 rgba(0,80,255,0.4)); }
+  87%  { transform: translateX(-1px); filter: none; }
+  100% { transform: translateX(0px)   skewX(0deg);    filter: none; }
+}
+
+/* Glitch jitter for "Pedagogy" → binary string: position jitter + opacity flicker */
+@keyframes glitch-binary {
+  0%   { transform: translateX(0px)  skewX(0deg);   opacity: 1; }
+  10%  { transform: translateX(-3px) skewX(-1.5deg); }
+  22%  { transform: translateX(4px)  skewX(1deg);   opacity: 0.75; }
+  35%  { transform: translateX(-2px) skewX(-0.5deg); opacity: 1; }
+  50%  { transform: translateX(3px)  skewX(0.5deg); }
+  65%  { transform: translateX(-2px);               opacity: 0.85; }
+  80%  { transform: translateX(2px)  skewX(0.5deg); opacity: 1; }
+  90%  { transform: translateX(-1px); }
+  100% { transform: translateX(0px)  skewX(0deg);   opacity: 1; }
+}
 
