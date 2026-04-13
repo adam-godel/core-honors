@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { Ref } from "@/app/components/ref";
+import { ArticleIcon } from "@/app/components/article-icon";
 import {
 	DocEditCursor,
 	DocInsert,
@@ -171,6 +172,7 @@ const components = {
 	),
 	Image,
 	Ref,
+	ArticleIcon,
 	DocEditCursor,
 	DocInsert,
 	DocOriginal,

@@ -358,7 +358,7 @@ export default function PostPage({ params }: Props) {
           </div>
         </div>
       ) : (
-        <article className="px-4 pt-4 pb-12 mx-auto prose prose-lg prose-invert prose-quoteless text-zinc-300">
+        <article className="relative z-0 px-4 pt-4 pb-12 mx-auto prose prose-lg prose-invert prose-quoteless text-zinc-300">
           <Mdx code={project.body.code} />
         </article>
       )}
