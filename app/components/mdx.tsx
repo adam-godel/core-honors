@@ -5,6 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { Ref } from "@/app/components/ref";
+import {
+	DocEditCursor,
+	DocInsert,
+	DocOriginal,
+	DocRefreshButton,
+	DocRewriteProvider,
+} from "@/app/components/doc-effects";
 
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
@@ -164,6 +171,11 @@ const components = {
 	),
 	Image,
 	Ref,
+	DocEditCursor,
+	DocInsert,
+	DocOriginal,
+	DocRefreshButton,
+	DocRewriteProvider,
 };
 
 interface MdxProps {
