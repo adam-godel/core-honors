@@ -10,16 +10,16 @@ export const metadata: Metadata = {
     default: "On Math and Pedagogy",
     template: "%s | On Math and Pedagogy",
   },
-  description: "Placeholder description",
+  description: "Adam Godel's Boston University Core Honors Project",
   openGraph: {
     title: "On Math and Pedagogy",
     description:
-      "Placeholder",
-    url: "https://placeholder.com",
-    siteName: "placeholder.com",
+      "Adam Godel's Boston University Core Honors Project",
+    url: "https://airulestheclassroom.com",
+    siteName: "airulestheclassroom.com",
     images: [
       {
-        url: "https://placeholder.com/placeholder.png",
+        url: "https://airulestheclassroom.com/favicon-assets/blob-512x512.png",
         width: 1920,
         height: 1080,
       },

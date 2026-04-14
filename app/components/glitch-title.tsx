@@ -17,6 +17,10 @@ interface GlitchWordProps {
 	animationName?: string;
 	/** Delay (ms) before the very first glitch fires */
 	initialDelay?: number;
+	/** Minimum wait (ms) between glitches */
+	waitMin?: number;
+	/** Maximum additional random wait (ms) on top of waitMin */
+	waitJitter?: number;
 }
 
 /**
@@ -31,6 +35,8 @@ function GlitchWord({
 	altStyle = {},
 	animationName = "glitch-math",
 	initialDelay = 3200,
+	waitMin = 2000,
+	waitJitter = 4000,
 }: GlitchWordProps) {
 	const [glitching, setGlitching] = useState(false);
 	const [altText, setAltText] = useState("");
@@ -41,7 +47,7 @@ function GlitchWord({
 
 		function schedule(extraDelay: number) {
 			// Each cycle: wait → glitch for ~250ms → wait → repeat
-			const wait = extraDelay + 2000 + Math.random() * 4000;
+			const wait = extraDelay + waitMin + Math.random() * waitJitter;
 			const t1 = setTimeout(() => {
 				if (!mounted.current) return;
 				setAltText(getAlt());
@@ -121,7 +127,9 @@ export function GlitchTitle({ className }: GlitchTitleProps) {
 				getAlt={() => "μανθάνω"}
 				altStyle={{ fontSize: "0.6em" }}
 				animationName="glitch-math"
-				initialDelay={3200}
+				initialDelay={2000}
+				waitMin={2500}
+				waitJitter={2500}
 			/>
 			{" and "}
 			<GlitchWord
@@ -138,7 +146,9 @@ export function GlitchTitle({ className }: GlitchTitleProps) {
 					fontSize: "0.92em",
 				}}
 				animationName="glitch-binary"
-				initialDelay={4800}
+				initialDelay={6500}
+				waitMin={6000}
+				waitJitter={3000}
 			/>
 		</h1>
 	);
