@@ -22,6 +22,9 @@ export function RipBackground() {
 	const isHome = pathname === "/";
 
 	useEffect(() => {
+		// Skip entirely on touch/mobile devices — requires a fine pointer (mouse)
+		if (!window.matchMedia("(pointer: fine)").matches) return;
+
 		const canvas = canvasRef.current;
 		if (!canvas) return;
 		const ctx = canvas.getContext("2d");
