@@ -357,8 +357,8 @@ export function DocRefreshButton() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         disabled={state !== "idle"}
-        aria-label="Rewrite with AI"
-        title="Rewrite with AI"
+        aria-label="Clean this up"
+        title="Clean this up"
         style={{
           display: "inline-flex",
           alignItems: "center",
