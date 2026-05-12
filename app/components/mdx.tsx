@@ -13,6 +13,7 @@ import {
 	DocRefreshButton,
 	DocRewriteProvider,
 } from "@/app/components/doc-effects";
+import { GoogleDocPage } from "@/app/components/google-doc-page";
 
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
@@ -178,6 +179,7 @@ const components = {
 	DocOriginal,
 	DocRefreshButton,
 	DocRewriteProvider,
+	GoogleDocPage,
 };
 
 interface MdxProps {
